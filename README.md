@@ -1,3 +1,79 @@
+# Güvenlik Araçları Koleksiyonu
+
+> **Uyarı:** Bu araçlar yalnızca kendi sistemlerinizde veya **yazılı izin alınmış** hedeflerde kullanılabilir. Yetkisiz kullanım yasa dışıdır.
+
+---
+
+## PenTest Suite
+
+Kapsamlı güvenlik test aracı — 9 modül tek programda.
+
+### Kurulum
+
+```bash
+pip install -r requirements.txt
+```
+
+### İnteraktif Menü
+
+```bash
+python pentest_suite.py
+```
+
+### CLI Kullanımı
+
+```bash
+# Hash kırıcı
+python pentest_suite.py hash 5f4dcc3b5aa765d61d8327deb882cf99 -w rockyou.txt
+
+# HTTP login brute force
+python pentest_suite.py http http://site.com/login -u admin -w passwords.txt --fail-text "Hatalı şifre"
+
+# SSH brute force
+python pentest_suite.py ssh 192.168.1.1 -u root -w passwords.txt -p 22 -t 5
+
+# FTP brute force
+python pentest_suite.py ftp 192.168.1.1 -u admin -w passwords.txt
+
+# ZIP şifre kırma
+python pentest_suite.py zip dosya.zip -w passwords.txt
+
+# RAR şifre kırma
+python pentest_suite.py rar dosya.rar -w passwords.txt
+
+# Port tarama
+python pentest_suite.py portscan 192.168.1.1 --range 1-65535 -t 200
+
+# Directory fuzzer
+python pentest_suite.py dirbust http://site.com -w dirlist.txt -e .php,.html -t 30
+
+# Subdomain tarayıcı
+python pentest_suite.py subdomain example.com -w subdomains.txt -t 50
+
+# JWT secret kırıcı
+python pentest_suite.py jwt eyJhbGci... -w secrets.txt
+
+# Sonuçları dosyaya kaydet
+python pentest_suite.py -o sonuclar.txt portscan 192.168.1.1
+```
+
+### Modüller
+
+| # | Modül | Açıklama |
+|---|-------|----------|
+| 1 | **Hash Cracker** | MD5, SHA1, SHA256, SHA512, bcrypt |
+| 2 | **HTTP Brute Force** | Form login + Basic Auth, thread destekli |
+| 3 | **SSH Brute Force** | Paramiko tabanlı SSH kimlik testi |
+| 4 | **FTP Brute Force** | FTP servis kimlik testi |
+| 5 | **ZIP Cracker** | Şifreli ZIP arşiv kırıcı |
+| 6 | **RAR Cracker** | Şifreli RAR arşiv kırıcı |
+| 7 | **Port Scanner** | TCP port tarayıcı, 18 servis tanımlı |
+| 8 | **Directory Fuzzer** | Web dizin/dosya keşfi, uzantı desteği |
+| 9 | **Subdomain Scanner** | DNS brute force ile subdomain keşfi |
+| 10 | **JWT Tester** | HS256/384/512 secret key kırıcı |
+
+---
+
 # IP Sorgulama Aracı
 
 Bir IP adresi veya domain hakkında konum, port ve WHOIS bilgilerini terminalde sorgular.
