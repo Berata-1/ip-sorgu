@@ -1,0 +1,47 @@
+========================================
+  ENCRYPTION TOOL - Komut Rehberi
+  AES-256-GCM | PBKDF2-SHA256
+========================================
+
+[ Kurulum ]
+pip install cryptography
+
+----------------------------------------
+[ Tek Dosya Şifreleme ]
+
+python encryption_tool.py encrypt belge.pdf
+  → belge.pdf.enc oluşturur
+
+python encryption_tool.py encrypt belge.pdf -o sifreli_belge.enc
+  → özel çıktı adı belirle
+
+----------------------------------------
+[ Tek Dosya Çözme ]
+
+python encryption_tool.py decrypt belge.pdf.enc
+  → belge.pdf oluşturur (otomatik isim)
+
+python encryption_tool.py decrypt sifreli_belge.enc -o acik_belge.pdf
+  → özel çıktı adı belirle
+
+----------------------------------------
+[ Klasör Şifreleme (toplu) ]
+
+python encryption_tool.py encrypt-dir ./belgeler
+  → klasördeki TÜM dosyaları .enc olarak şifreler
+
+----------------------------------------
+[ Klasör Çözme (toplu) ]
+
+python encryption_tool.py decrypt-dir ./belgeler
+  → klasördeki TÜM .enc dosyalarını çözer
+
+----------------------------------------
+[ Notlar ]
+
+- Şifre sıfırlanamaz. Unutulursa dosya geri alınamaz.
+- Şifrelenmiş dosyalar .enc uzantısıyla kaydedilir.
+- Orijinal dosya SİLİNMEZ, elle silmen gerekir.
+- Büyük dosyalarda (100MB+) PBKDF2 hesabı birkaç saniye sürebilir.
+
+========================================
